@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2023 a las 11:16:54
+-- Tiempo de generación: 12-12-2023 a las 15:38:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -54,6 +54,15 @@ CREATE TABLE `comments` (
   `post_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `comments`
+--
+
+INSERT INTO `comments` (`id`, `content`, `user_id`, `post_id`) VALUES
+(1, '¡Muy buen post!', 1, 1),
+(2, 'Me gustaría saber más sobre este tema.', 2, 2),
+(3, '¡Estoy de acuerdo con tu opinión!', 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +88,15 @@ CREATE TABLE `posts` (
   `user_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `content`, `user_id`, `category_id`) VALUES
+(1, 'Título de la publicación 1', 'Contenido de la publicación 1', 1, 1),
+(2, 'Título de la publicación 2', 'Contenido de la publicación 2', 2, 1),
+(3, 'Título de la publicación 3', 'Contenido de la publicación 3', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -119,9 +137,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`) VALUES
-(4, 'Admin User', 'admin@example.com', 'hashed_password_admin', 1),
-(5, 'Editor User', 'editor@example.com', 'hashed_password_editor', 2),
-(6, 'Regular User', 'user@example.com', 'hashed_password_user', 3);
+(1, 'Admin User', 'admin@example.com', 'hashed_password_admin', 1),
+(2, 'Editor User', 'editor@example.com', 'hashed_password_editor', 2),
+(3, 'Regular User', 'user@example.com', 'hashed_password_user', 3);
 
 --
 -- Índices para tablas volcadas
@@ -182,7 +200,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -194,7 +212,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

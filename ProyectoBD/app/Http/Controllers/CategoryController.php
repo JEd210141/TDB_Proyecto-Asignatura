@@ -19,7 +19,9 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories,name',
         ]);
 
-        // Lógica para almacenar la categoría en la base de datos
+        Category::create($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Categoría creada exitosamente.');
     }
 
     public function update(Request $request, $id)
@@ -28,7 +30,11 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories,name,' . $id,
         ]);
 
-        // Lógica para actualizar la categoría en la base de datos
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Categoría actualizada exitosamente.');
     }
 
+    // Puedes agregar otros métodos como show, destroy y búsqueda
 }

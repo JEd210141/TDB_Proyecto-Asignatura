@@ -13,6 +13,12 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
+    public function show($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -21,7 +27,11 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        // Lógica para almacenar el post en la base de datos
+        $post = new Post();
+        $post->fill($request->all());
+        $post->save();
+
+        return redirect()->route('posts.index')->with('success', 'Post creado exitosamente.');
     }
 
     public function update(Request $request, $id)
@@ -32,6 +42,18 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        // Lógica para actualizar el post en la base de datos
+        $post = Post::findOrFail($id);
+        $post->fill($request->all());
+        $post->save();
+
+        return redirect()->route('posts.index')->with('success', 'Post actualizado exitosamente.');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', 'Post eliminado exitosamente.');
     }
 }

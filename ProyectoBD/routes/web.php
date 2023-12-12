@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PostController;
@@ -19,9 +20,12 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', [DashboardController::class, 'index']);
+Route::post('/comments', 'CommentController@store');
 
 // Rutas para Usuarios
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
